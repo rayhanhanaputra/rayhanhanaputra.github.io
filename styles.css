@@ -134,6 +134,7 @@ tr:nth-child(even) {
   margin: auto;
   padding: 1rem;
   gap: 4rem;
+  margin-top: 2rem;
 }
 
 .content {
@@ -206,6 +207,11 @@ tr:nth-child(even) {
   transition: 0.3s;
   cursor: pointer;
   color: var(--primary-color);
+}
+
+.portfolio:hover {
+  border-color: var(--secondary-color);
+  color: var(--secondary-color);
 }
 
 .social-icons {
