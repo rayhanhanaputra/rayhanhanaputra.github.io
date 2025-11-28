@@ -6,7 +6,7 @@ tags: [mobile, android]
 ---
 
 Hello there!
-This is my writeup for the National Cyber Week (NCW) 2025 event. There's one category that caught my attention, which is the mobile category. It was super interesting because it combined multiple Android exploitation techniques.
+This is my writeup for the qualification round of National Cyber Week (NCW) 2025 event. There's one category that caught my attention, which is the mobile category. It was super interesting because it combined multiple Android exploitation techniques.
 
 ![NCW 2025](/assets/images/ncw2025.png)
 
@@ -207,7 +207,7 @@ This exploits shell command parsing to execute `cat` after the `ping` command, l
 5. **Stage 2 - Race Read:**
    - Hammer the `content://` URI with multiple read requests at staggered intervals (200ms, 300ms, ..., 1600ms).
    - One of these reads will catch `history.yml` after the `cat` command writes the flag but before the app overwrites it with new history entries.
-   - Extract the flag using a regex pattern (`flag{...}`).
+   - Extract the flag using a regex pattern (`NCW{...}`).
 
 6. **Exfiltration:**
    - POST the extracted flag to an attacker-controlled webhook for retrieval.
@@ -230,7 +230,7 @@ This command exfiltrates any file matching `flag*` from both the app's root data
 
 To trigger deserialization, we send a harmless calculation request (`2+2`) which forces the app to reload `history.yml`. The YAML parser encounters our `!!com.qinquang.calc.PingUtil` tag, instantiates the class with our injected string, and executes the shell command.
 
-Because the app may quickly overwrite `history.yml` again with new legitimate entries, we perform a **race-condition attack** by scheduling multiple reads of the `content://` URI at intervals ranging from 200ms to 1600ms. One of these reads will catch the window where `history.yml` contains the dumped flag. We parse each read result with a simple regex to extract anything matching `flag{...}`, then immediately POST it to our webhook.
+Because the app may quickly overwrite `history.yml` again with new legitimate entries, we perform a **race-condition attack** by scheduling multiple reads of the `content://` URI at intervals ranging from 200ms to 1600ms. One of these reads will catch the window where `history.yml` contains the dumped flag. We parse each read result with a simple regex to extract anything matching `NCW{...}`, then immediately POST it to our webhook.
 
 This two-stage attack chains an intent validation bypass with a classic deserialization RCE, all without requiring any dangerous Android permissions. The entire exploit runs within the sandbox of a normal unprivileged app.
 
@@ -432,7 +432,7 @@ class MainActivity : Activity() {
     }
 
     private fun extractFlag(s: String): String? {
-        val idx = s.indexOf("flag{")
+        val idx = s.indexOf("NCW{")
         if (idx == -1) return null
         val end = s.indexOfAny(charArrayOf(' ', '\n', '\r', '\t'), idx).let { e ->
             if (e == -1) s.length else e
