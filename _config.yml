@@ -1,15 +1,16 @@
 title: "hanzo's blog"
-description: "my ctf writeups"
-url: "https://hanz0x17.github.io" 
+description: "newb ctf player | rev & pwn enthusiast"
+url: "https://rayhanhanaputra.github.io" 
 baseurl: ""
 markdown: kramdown
 show_excerpts: true
-theme: minima
+excerpt_separator: "<!--more-->"
+theme: jekyll-theme-hacker
 author: hanzo
 
-github_username: hanz0x17
-twitter_username: hanz0x17
-discord_username: hanz0x17
+# Disable GitHub button in hacker theme
+github:
+  is_project_page: false
 
 plugins: []
 

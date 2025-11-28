@@ -1,7 +1,8 @@
 ---
 layout: post
 title: "ICC Tokyo 2025"
-categories: [reverse, forensic, mobile]
+categories: reverse
+tags: [reverse, forensic, mobile]
 ---
 
 Hello everyone, welcome to my first post on this blog. So, I've just arrived back in my home country after a very interesting event called International Cybersecurity Challenge 2025 that was held in Japan. I played as part of Team ASEAN there, and the challenges were quite fun and interesting. The animation was fantastic and I think it was the best CTF event that I've participated in during my entire life :D
@@ -210,3 +211,5 @@ print(flag.decode())
 <br>
 
 Overall, I really enjoyed the event even though it was really hard to compete with some of the prodigy hackers out there. But yeah, I hope that I can get the chance to play in ICC again in the future.
+
+<br>
